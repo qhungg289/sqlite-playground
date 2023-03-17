@@ -126,7 +126,7 @@
 				</div>
 			</div>
 
-			<div class="table-container">
+			<div x-show="result.length > 0" x-cloak class="table-container">
 				<template x-for="table in result">
 					<table>
 						<thead>
