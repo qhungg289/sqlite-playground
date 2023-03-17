@@ -14,8 +14,14 @@ body {
 	background-color: #0f172a;
 }
 
-h1 {
+hgroup {
 	margin-block: 2rem;
+}
+
+hgroup > h2 {
+	font-size: 1rem;
+	font-weight: 400;
+	color: #64748b;
 }
 
 .query-error {

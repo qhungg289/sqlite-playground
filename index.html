@@ -4,7 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 		<link rel="stylesheet" href="style.css" />
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"
@@ -21,10 +20,13 @@
 	</head>
 	<body>
 		<main x-data="{ result: [], error: '',  }" class="container">
-			<h1>SQLite Playground</h1>
+			<hgroup>
+				<h1>SQLite Playground</h1>
+				<h2>Online query editor to interact with your SQLite database</h2>
+			</hgroup>
 
 			<div x-data="{ query: '' }" class="query-container">
-				<p x-show="error" x-transition x-cloak class="query-error">
+				<p x-show="error" x-cloak class="query-error">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
