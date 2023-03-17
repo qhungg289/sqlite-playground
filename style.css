@@ -12,6 +12,7 @@ body {
 	font-family: monospace;
 	color: #f1f5f9;
 	background-color: #0f172a;
+	margin: 1rem;
 }
 
 hgroup {
@@ -42,6 +43,7 @@ hgroup > h2 {
 
 .query-textarea {
 	font-family: monospace;
+	font-size: 1rem;
 	resize: none;
 	width: 100%;
 	padding: 1rem;
@@ -62,6 +64,7 @@ hgroup > h2 {
 .button-container {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	gap: 0.5rem;
 	margin-top: 0.5rem;
 }
@@ -69,37 +72,45 @@ hgroup > h2 {
 .button-container > div {
 	display: flex;
 	gap: 0.5rem;
+	width: 100%;
 }
 
 .query-button,
+.clear-button,
 .import-button,
 .export-button {
-	padding: 0.75rem 1.25rem;
+	width: 100%;
+	padding: 0.75em 1.25em;
 	border-radius: 6px;
 	border: none;
-	font-size: 1.05rem;
+	font-size: 1rem;
 	color: white;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	line-height: 0;
 	transition: opacity 100ms;
 }
 
 .query-button:hover,
 .import-button:hover,
-.export-button:hover {
+.export-button:hover,
+.clear-button:hover {
 	opacity: 0.8;
 }
 
-.query-button > svg {
-	width: 1rem;
+.button-container svg {
+	width: 1.15rem;
 }
 
 .query-button {
 	background-color: #059669;
 	border: 1px solid #10b981;
+}
+
+.clear-button {
+	background-color: #e11d48;
+	border: 1px solid #f43f5e;
 }
 
 .import-button {
@@ -125,6 +136,7 @@ table {
 	margin-top: 2rem;
 	border-radius: 6px;
 	overflow: hidden;
+	font-size: 1rem;
 }
 
 th {
