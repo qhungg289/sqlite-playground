@@ -53,7 +53,7 @@ hgroup > h2 {
 }
 
 .query-textarea:focus {
-	outline: none;
+	outline: 1px solid #6366f1;
 	border: 1px solid #6366f1;
 }
 
