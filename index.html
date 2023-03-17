@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="style.css" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"
+			integrity="sha512-n7swEtVCvXpQ7KxgpPyp0+DQQEf5vPpmzCRl14x2sp2v5LpCYCjrAx03mkBAbWwGF9eUoIk8YVcDFuJRIeYttg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script
+			defer
+			src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"
+		></script>
+		<script src="app.js"></script>
+		<title>SQLite Playground</title>
+	</head>
+	<body>
+		<main x-data="{ result: [], error: '',  }" class="container">
+			<h1>SQLite Playground</h1>
+
+			<div x-data="{ query: '' }" class="query-container">
+				<p x-show="error" x-transition x-cloak class="query-error">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+						/>
+					</svg>
+					<span x-text="error"></span>
+				</p>
+
+				<textarea
+					name="query"
+					class="query-textarea"
+					placeholder="select * from ..."
+					rows="10"
+					x-model="query"
+				></textarea>
+
+				<div class="button-container">
+					<button
+						class="query-button"
+						@click="[result, error] = executeQuery($data.query)"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+						>
+							<path
+								d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"
+							/>
+						</svg>
+						Run
+					</button>
+
+					<div>
+						<button class="import-button" @click="$refs.import.click()">
+							Import
+						</button>
+						<input
+							@change="importFromFile($el)"
+							x-ref="import"
+							type="file"
+							name="import"
+							id="import"
+							accept=".sqlite"
+						/>
+						<button class="export-button" @click="exportToFile()">
+							Export
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-container">
+				<template x-for="table in result">
+					<table>
+						<thead>
+							<tr>
+								<template x-for="name in table.columns">
+									<th scope="col" x-text="name"></th>
+								</template>
+							</tr>
+						</thead>
+						<tbody>
+							<template x-for="row in table.values">
+								<tr>
+									<template x-for="data in row">
+										<td x-text="data"></td>
+									</template>
+								</tr>
+							</template>
+						</tbody>
+					</table>
+				</template>
+			</div>
+		</main>
+	</body>
+</html>
