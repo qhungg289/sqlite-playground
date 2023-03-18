@@ -32,7 +32,7 @@ function exportToFile() {
 	const dbExported = db.export();
 	const a = document.createElement("a");
 	a.href = URL.createObjectURL(new Blob([dbExported]), {
-		type: "application/octet-stream",
+		type: "application/vnd.sqlite3",
 	});
 	a.download = `db-${Date.now()}.sqlite`;
 	a.click();
