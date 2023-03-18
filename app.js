@@ -14,16 +14,18 @@ initSqlJs(config).then((sql) => {
 function executeQuery(query) {
 	let rows = [];
 	let err = null;
+	let changed = null;
 
 	try {
 		rows = db.exec(query);
+		changed = db.getRowsModified();
 		console.log(rows);
 	} catch (e) {
 		err = e.message;
 		console.error(e.message);
 	}
 
-	return [rows, err];
+	return [rows, err, changed];
 }
 
 function exportToFile() {

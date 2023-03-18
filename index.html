@@ -22,7 +22,7 @@
 		<title>SQLite Playground</title>
 	</head>
 	<body>
-		<main x-data="{ result: [], error: '',  }">
+		<main x-data="{ result: [], error: '', changed: null }">
 			<hgroup>
 				<h1>SQLite Playground</h1>
 				<h2>Online query editor to interact with your SQLite database</h2>
@@ -58,7 +58,7 @@
 					<div>
 						<button
 							class="query-button"
-							@click="[result, error] = executeQuery($data.query)"
+							@click="[result, error, changed] = executeQuery($data.query)"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,10 @@
 							</svg>
 							Run
 						</button>
-						<button class="clear-button" @click="query = ''; error = ''">
+						<button
+							class="clear-button"
+							@click="query = ''; error = ''; changed = null; result = []"
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 20 20"
@@ -127,6 +130,12 @@
 						</button>
 					</div>
 				</div>
+
+				<p
+					x-show="changed != null"
+					x-cloak
+					x-text="`${changed} rows changed`"
+				></p>
 			</div>
 
 			<div x-show="result.length > 0" x-cloak class="table-container">
