@@ -21,6 +21,10 @@ hgroup {
 	margin-block: 2rem;
 }
 
+hgroup > h1 {
+	font-size: 1.5rem;
+}
+
 hgroup > h2 {
 	font-weight: 400;
 	color: #64748b;
@@ -98,11 +102,20 @@ hgroup > h2 {
 	transition: opacity 100ms;
 }
 
-.query-button:hover,
-.import-button:hover,
-.export-button:hover,
-.clear-button:hover {
+.query-button:active,
+.clear-button:active,
+.import-button:active,
+.export-button:active {
 	opacity: 0.8;
+}
+
+@media (min-width: 620px) {
+	.query-button:hover,
+	.import-button:hover,
+	.export-button:hover,
+	.clear-button:hover {
+		opacity: 0.8;
+	}
 }
 
 .button-container svg {
