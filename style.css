@@ -53,8 +53,9 @@ hgroup > h2 {
 }
 
 .query-textarea:focus {
-	outline: 1px solid #6366f1;
+	outline: none;
 	border: 1px solid #6366f1;
+	box-shadow: 0 0 0 1pt #6366f1;
 }
 
 .query-textarea::placeholder {
